@@ -43,15 +43,17 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'accounts',
+    'postings',
     'social_django',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist'
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -63,10 +65,13 @@ ROOT_URLCONF = 'backend.urls'
 
 SITE_ID=1
 
+DOMAIN = ('localhost:3000') 
+SITE_NAME = ('KENYAN WHEELS')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"../react-admin-dashboard/build")],
+        'DIRS': [os.path.join(BASE_DIR,"../frontend/build")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -188,7 +193,7 @@ DJOSER = {
     'ACTIVATION_URL':'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL':True,
     'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000', 'http://localhost:8000/google', 'http://localhost:8000/facebook'],
+    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://localhost:8000', 'http://localhost:8000/google', 'http://127.0.0.1:8000'],
     'SERIALIZERS': {
         'user_create':'accounts.serializers.UserCreateSerializer',
         'user':'accounts.serializers.UserCreateSerializer',
@@ -196,13 +201,19 @@ DJOSER = {
         'user_delete':'accounts.serializers.UserDeleteSerializer',
     }
 }
-
+'''
+# social authentication settings
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '455006111121-tgir69fqhad8tf305pg7e4p8p1nl87f9.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
+SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
+'''
 # social authentication settings
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '436505861507-ea6jvd5am39kmualpg7jj67vi64d2hfg.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = 'accounts.UserAccount'

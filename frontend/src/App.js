@@ -4,11 +4,19 @@ import { Routes, Route } from "react-router-dom";
 /* Components */
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
+import Navbar from './components/Navbar'
 
 /* Pages */
-import Login from "./scenes/screens/LoginScreen";
-import Register from "./scenes/screens/RegisterScreen";
-import Home from "./scenes/screens/Home";
+//import Login from "./scenes/screens/LoginScreen";
+//import Register from "./scenes/screens/RegisterScreen";
+//import Home from "./scenes/screens/Home";
+
+import Home from './containers/Home';
+import Login from './containers/Login'
+import Signup from './containers/Signup'
+import Activate from './containers/Activate'
+import ResetPassword from './containers/ResetPassword'
+import ResetPasswordConfirm from './containers/ResetPasswordConfirm'
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -19,9 +27,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 function App() {
     /* PULLING A PART OF STATE FROM THE ACTUAL STATE IN THE REDUX STORE */
-    const userLogin = useSelector((state) => state.userLogin);
+    const userLogin = useSelector(state => state.auth.user);
 
-    const { userInfo } = userLogin;
+   // const { userInfo } = userLogin;
 
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
@@ -32,13 +40,17 @@ function App() {
         <CssBaseline />
         <div className="app">
           <main className="content">
-        {userInfo ? (
+      {/*}  {userInfo ? (
           <Topbar setIsSidebar={setIsSidebar} />
-          ) : (<></>)}
+      ) : (<></>)} */}
+      <Navbar/>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />} />
+              <Route path="/activate/:uid/:token" element={<Activate />} />
             </Routes>
             </main>
         </div>
