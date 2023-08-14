@@ -111,9 +111,6 @@ const Signup = ({signup , isAuthenticated}) => {
                 </div>
                 <button className='btn btn-primary mt-2' type='submit'>Register</button>
             </form>
-            <button className='btn btn-danger mt-3' onClick={continueWithGoogle}>
-                Continue With Google
-            </button>
             <br />
             <p className='mt-3'>
                 Already have an account? <Link to='/login'>Login</Link>

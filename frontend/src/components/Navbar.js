@@ -37,7 +37,7 @@ const Navbar = ({isAuthenticated, logout}) => {
         <Fragment>
             <div className="container">
                 <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-                    <Link className='navbar-brand' to='/'>Kenyan Wheels</Link>
+                    <Link className='navbar-brand' to='/'>Assessment Project</Link>
                     <div className='collapse navbar-collapse' id='navbarNav'>
                         <ul className='navbar-nav'>
                             <li className='nav-item active'>

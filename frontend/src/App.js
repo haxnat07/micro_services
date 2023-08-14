@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 /* Components */
-import Topbar from "./scenes/global/Topbar";
-import Sidebar from "./scenes/global/Sidebar";
 import Navbar from './components/Navbar'
 
 /* Pages */
@@ -19,7 +17,6 @@ import ResetPassword from './containers/ResetPassword'
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm'
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { ColorModeContext, useMode } from "./theme";
 
 
 /* REACT - REDUX */
@@ -31,12 +28,8 @@ function App() {
 
    // const { userInfo } = userLogin;
 
-  const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
-
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      
+      <>
         <CssBaseline />
         <div className="app">
           <main className="content">
@@ -54,8 +47,7 @@ function App() {
             </Routes>
             </main>
         </div>
-      
-    </ColorModeContext.Provider>
+        </>
   );
 }
 

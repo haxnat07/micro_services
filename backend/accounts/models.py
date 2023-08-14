@@ -7,7 +7,6 @@ class UserAccountManager(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
 
-        #normalize_email just normalize the email like 'NishNarsale510@gmail.com' to 'nishnarsale510@gmail.com'
         email = self.normalize_email(email)
         other_fields.setdefault('is_admin', False)
         user = self.model(email=email, **other_fields)
@@ -22,16 +21,15 @@ class UserAccountManager(BaseUserManager):
         if not email:
             raise ValueError('Users must have an email address')
 
-        #normalize_email just normalize the email like 'NishNarsale510@gmail.com' to 'nishnarsale510@gmail.com'
         email = self.normalize_email(email)
 
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
 
-        if other_fields.get('is_staff' is not True):
+        if other_fields.get('is_staff' != True):
             raise ValueError('superuser must be assigned to is_staff=True')
-        if other_fields.get('is_superuser' is not True):
+        if other_fields.get('is_superuser' != True):
             raise ValueError('superuser must be assigned to is_superuser=True')
 
         user = self.model(email=email, **other_fields)

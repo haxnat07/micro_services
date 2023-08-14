@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'accounts',
-    'postings',
+    'warehouse',
+    'accounting',
+    'sales',
+
     'social_django',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist'
@@ -66,7 +69,7 @@ ROOT_URLCONF = 'backend.urls'
 SITE_ID=1
 
 DOMAIN = ('localhost:3000') 
-SITE_NAME = ('KENYAN WHEELS')
+#SITE_NAME = ('')
 
 TEMPLATES = [
     {
@@ -100,8 +103,8 @@ DATABASES = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'haxnat07@gmail.com'
-EMAIL_HOST_PASSWORD = 'hceomrkffuvpnruy'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 
 # Password validation
@@ -144,6 +147,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, '../frontend/build/static')
 ]
 
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -163,6 +167,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
 }
 
 AUTHENTICATION_BACKENDS = (
@@ -201,13 +208,6 @@ DJOSER = {
         'user_delete':'accounts.serializers.UserDeleteSerializer',
     }
 }
-'''
-# social authentication settings
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '455006111121-tgir69fqhad8tf305pg7e4p8p1nl87f9.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile', 'openid']
-SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
-'''
 # social authentication settings
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '436505861507-ea6jvd5am39kmualpg7jj67vi64d2hfg.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
