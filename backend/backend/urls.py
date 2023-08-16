@@ -28,9 +28,9 @@ urlpatterns = [
     path('auth/',include('djoser.urls')),
     path('auth/',include('djoser.urls.jwt')),
     path('auth/',include('djoser.social.urls')),
-    path('',include('accounting.urls')),
-    path('',include('sales.urls')),
-    path('',include('warehouse.urls')),
+    path('accounting/',include('accounting.urls')),
+    path('sales/',include('sales.urls')),
+    path('warehouse/',include('warehouse.urls')),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
